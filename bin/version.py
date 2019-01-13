@@ -5,7 +5,7 @@ python version.py (--major|--minor|--patch)
 """
 
 
-from __future__ import print_function
+
 
 
 import re

@@ -11,7 +11,8 @@ import re
 import os
 import os.path
 import platform
-import StringIO
+import io
+from functools import reduce
 
 
 def run_c_preprocessor(header_contents):
@@ -41,7 +42,7 @@ def run_c_preprocessor(header_contents):
         if platform.architecture()[0] == "64bit":
             cpp.define("__x86_64__")
     cpp.parse(header_contents)
-    output = StringIO.StringIO()
+    output = io.StringIO()
     cpp.write(output)
     return output.getvalue()
 
@@ -56,13 +57,13 @@ def build_nuklear_defs(preprocessed_text, extra_cdef):
     in enum declarations.
     """
 
-    print "Evaluating << expressions..."
+    print("Evaluating << expressions...")
     shift_expr = "\\(1 << \\(([0-9]+)\\)\\)"
     def evaluate_shift(match):
         return str(1 << int(match.group(1)))
     preprocessed_text = re.sub(shift_expr, evaluate_shift, preprocessed_text)
 
-    print "Evaluating | expressions..."
+    print("Evaluating | expressions...")
     val_expr = "(nk|NK)_[a-zA-Z0-9_]+"
     or_expr = "%s( *\\| *%s)+" % (val_expr, val_expr)
     def lookup_value(value_name):
@@ -78,13 +79,13 @@ def build_nuklear_defs(preprocessed_text, extra_cdef):
             raise Exception("Cannot find definition for value '%s'" % value_name)
         return ret
     def evaluate_or(expression_text):
-        values = map(lambda x: lookup_value(x.strip()), expression_text.split("|"))
+        values = [lookup_value(x.strip()) for x in expression_text.split("|")]
         return reduce(lambda x,y: x|y, values)
     def replace_or(match):
         return str(evaluate_or(match.group(0)))
     preprocessed_text = re.sub(or_expr, replace_or, preprocessed_text)
 
-    print "Stubbing nk_table..."
+    print("Stubbing nk_table...")
     preprocessed_text = re.sub(
     	"(struct nk_table {.*?;)[^;]*?sizeof\\(.*?};",
         lambda x: x.group(1) + "\n    ...;\n};",
@@ -93,7 +94,7 @@ def build_nuklear_defs(preprocessed_text, extra_cdef):
         flags=re.MULTILINE|re.DOTALL
     )
 
-    print "Removing duplicate 'nk_draw_list_clear' declaration..."
+    print("Removing duplicate 'nk_draw_list_clear' declaration...")
     preprocessed_text = re.sub(
         "extern void nk_draw_list_clear\\(struct nk_draw_list \\*list\\);",
         "",
@@ -155,15 +156,15 @@ def maker():
     # can be a bit tricky to get pcpp working.
     preprocessed_text = None
     if os.path.exists(cached_preprocessed_header_filename):
-        print 
-        print "***************************************************************"
-        print "NOTE: Using cached preprocessed header from", cached_preprocessed_header_filename
-        print "      Any changes to the header will not have been propagated."
-        print "***************************************************************"
-        print 
+        print() 
+        print("***************************************************************")
+        print("NOTE: Using cached preprocessed header from", cached_preprocessed_header_filename)
+        print("      Any changes to the header will not have been propagated.")
+        print("***************************************************************")
+        print() 
         preprocessed_text = open(cached_preprocessed_header_filename, 'rU').read()
     else:
-        print "Preprocessing header..."
+        print("Preprocessing header...")
         preprocessed_text = run_c_preprocessor(header_only_options + header)
         open(cached_preprocessed_header_filename, 'w').write(preprocessed_text)
 
@@ -171,7 +172,7 @@ def maker():
     defs = build_nuklear_defs(preprocessed_text, extra_cdef)
 
     # Now create the FFI builder.
-    print "Creating ffi builder..."
+    print("Creating ffi builder...")
     ffibuilder = cffi.FFI()
     ffibuilder.cdef(defs)
     ffibuilder.set_source("_nuklear", source, libraries=[])
