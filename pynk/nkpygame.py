@@ -245,7 +245,7 @@ class NkPygame(object):
                 if unicodedata.category(e.unicode)[0] != "C":
                     char = str(e.unicode)
                     if len(char) == 1:
-                        lib.nk_input_char(self.ctx, str(e.unicode))
+                        lib.nk_input_char(self.ctx, str(e.unicode).encode('utf-8'))
         elif e.type == pygame.MOUSEBUTTONDOWN or e.type == pygame.MOUSEBUTTONUP:
             down = e.type == pygame.MOUSEBUTTONDOWN
             button = lib.NK_BUTTON_LEFT
