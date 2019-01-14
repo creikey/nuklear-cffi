@@ -1,5 +1,11 @@
-#line 402
-typedef char nk_char;
+# 1 "nuklear/nuklear.h"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 1 "<command-line>" 2
+# 1 "nuklear/nuklear.h"
+# 398 "nuklear/nuklear.h"
+typedef signed char nk_char;
 typedef unsigned char nk_uchar;
 typedef unsigned char nk_byte;
 typedef signed short nk_short;
@@ -16,15 +22,6 @@ typedef nk_uint nk_rune;
 
 
 
-;
-;
-;
-;
-;
-;
-;
-;
-;
 
 
 
@@ -70,18 +67,18 @@ struct nk_image {nk_handle handle;unsigned short w,h;unsigned short region[4];};
 struct nk_cursor {struct nk_image img; struct nk_vec2 size, offset;};
 struct nk_scroll {nk_uint x, y;};
 
-enum nk_heading         {NK_UP, NK_RIGHT, NK_DOWN, NK_LEFT};
+enum nk_heading {NK_UP, NK_RIGHT, NK_DOWN, NK_LEFT};
 enum nk_button_behavior {NK_BUTTON_DEFAULT, NK_BUTTON_REPEATER};
-enum nk_modify          {NK_FIXED = nk_false, NK_MODIFIABLE = nk_true};
-enum nk_orientation     {NK_VERTICAL, NK_HORIZONTAL};
+enum nk_modify {NK_FIXED = nk_false, NK_MODIFIABLE = nk_true};
+enum nk_orientation {NK_VERTICAL, NK_HORIZONTAL};
 enum nk_collapse_states {NK_MINIMIZED = nk_false, NK_MAXIMIZED = nk_true};
-enum nk_show_states     {NK_HIDDEN = nk_false, NK_SHOWN = nk_true};
-enum nk_chart_type      {NK_CHART_LINES, NK_CHART_COLUMN, NK_CHART_MAX};
-enum nk_chart_event     {NK_CHART_HOVERING = 0x01, NK_CHART_CLICKED = 0x02};
-enum nk_color_format    {NK_RGB, NK_RGBA};
-enum nk_popup_type      {NK_POPUP_STATIC, NK_POPUP_DYNAMIC};
-enum nk_layout_format   {NK_DYNAMIC, NK_STATIC};
-enum nk_tree_type       {NK_TREE_NODE, NK_TREE_TAB};
+enum nk_show_states {NK_HIDDEN = nk_false, NK_SHOWN = nk_true};
+enum nk_chart_type {NK_CHART_LINES, NK_CHART_COLUMN, NK_CHART_MAX};
+enum nk_chart_event {NK_CHART_HOVERING = 0x01, NK_CHART_CLICKED = 0x02};
+enum nk_color_format {NK_RGB, NK_RGBA};
+enum nk_popup_type {NK_POPUP_STATIC, NK_POPUP_DYNAMIC};
+enum nk_layout_format {NK_DYNAMIC, NK_STATIC};
+enum nk_tree_type {NK_TREE_NODE, NK_TREE_TAB};
 
 typedef void*(*nk_plugin_alloc)(nk_handle, void *old, nk_size);
 typedef void (*nk_plugin_free)(nk_handle, void *old);
@@ -110,26 +107,19 @@ enum nk_symbol_type {
     NK_SYMBOL_MINUS,
     NK_SYMBOL_MAX
 };
-#line 557
+# 564 "nuklear/nuklear.h"
 extern int nk_init_default(struct nk_context*, const struct nk_user_font*);
-#line 573
+# 589 "nuklear/nuklear.h"
 extern int nk_init_fixed(struct nk_context*, void *memory, nk_size size, const struct nk_user_font*);
-#line 584
+# 607 "nuklear/nuklear.h"
 extern int nk_init(struct nk_context*, struct nk_allocator*, const struct nk_user_font*);
-#line 596
+# 626 "nuklear/nuklear.h"
 extern int nk_init_custom(struct nk_context*, struct nk_buffer *cmds, struct nk_buffer *pool, const struct nk_user_font*);
-
-
-
-
-
+# 640 "nuklear/nuklear.h"
 extern void nk_clear(struct nk_context*);
-
-
-
-
+# 653 "nuklear/nuklear.h"
 extern void nk_free(struct nk_context*);
-#line 668
+# 735 "nuklear/nuklear.h"
 enum nk_keys {
     NK_KEY_NONE,
     NK_KEY_SHIFT,
@@ -172,44 +162,25 @@ enum nk_buttons {
     NK_BUTTON_DOUBLE,
     NK_BUTTON_MAX
 };
-
-
-
-
+# 789 "nuklear/nuklear.h"
 extern void nk_input_begin(struct nk_context*);
-
-
-
-
-
+# 803 "nuklear/nuklear.h"
 extern void nk_input_motion(struct nk_context*, int x, int y);
-
-
-
-
-
+# 817 "nuklear/nuklear.h"
 extern void nk_input_key(struct nk_context*, enum nk_keys, int down);
-#line 734
+# 833 "nuklear/nuklear.h"
 extern void nk_input_button(struct nk_context*, enum nk_buttons, int x, int y, int down);
-
-
-
-
-
-
+# 848 "nuklear/nuklear.h"
 extern void nk_input_scroll(struct nk_context*, struct nk_vec2 val);
-#line 749
+# 866 "nuklear/nuklear.h"
 extern void nk_input_char(struct nk_context*, char);
-#line 757
+# 883 "nuklear/nuklear.h"
 extern void nk_input_glyph(struct nk_context*, const nk_glyph);
-#line 765
+# 899 "nuklear/nuklear.h"
 extern void nk_input_unicode(struct nk_context*, nk_rune);
-
-
-
-
+# 912 "nuklear/nuklear.h"
 extern void nk_input_end(struct nk_context*);
-#line 977
+# 1142 "nuklear/nuklear.h"
 enum nk_anti_aliasing {NK_ANTI_ALIASING_OFF, NK_ANTI_ALIASING_ON};
 enum nk_convert_result {
     NK_CONVERT_SUCCESS = 0,
@@ -234,367 +205,173 @@ struct nk_convert_config {
     nk_size vertex_size;
     nk_size vertex_alignment;
 };
-
-
-
-
-
-
+# 1180 "nuklear/nuklear.h"
 extern const struct nk_command* nk__begin(struct nk_context*);
-
-
-
-
-
-
+# 1195 "nuklear/nuklear.h"
 extern const struct nk_command* nk__next(struct nk_context*, const struct nk_command*);
-#line 1033
+# 1241 "nuklear/nuklear.h"
 extern nk_flags nk_convert(struct nk_context*, struct nk_buffer *cmds, struct nk_buffer *vertices, struct nk_buffer *elements, const struct nk_convert_config*);
-
-
-
-
-
-
+# 1256 "nuklear/nuklear.h"
 extern const struct nk_draw_command* nk__draw_begin(const struct nk_context*, const struct nk_buffer*);
-
-
-
-
-
-
+# 1271 "nuklear/nuklear.h"
 extern const struct nk_draw_command* nk__draw_end(const struct nk_context*, const struct nk_buffer*);
-#line 1055
+# 1287 "nuklear/nuklear.h"
 extern const struct nk_draw_command* nk__draw_next(const struct nk_draw_command*, const struct nk_buffer*, const struct nk_context*);
-#line 1181
+# 1448 "nuklear/nuklear.h"
 enum nk_panel_flags {
-    NK_WINDOW_BORDER            = (1 << (0)),
-    NK_WINDOW_MOVABLE           = (1 << (1)),
-    NK_WINDOW_SCALABLE          = (1 << (2)),
-    NK_WINDOW_CLOSABLE          = (1 << (3)),
-    NK_WINDOW_MINIMIZABLE       = (1 << (4)),
-    NK_WINDOW_NO_SCROLLBAR      = (1 << (5)),
-    NK_WINDOW_TITLE             = (1 << (6)),
-    NK_WINDOW_SCROLL_AUTO_HIDE  = (1 << (7)),
-    NK_WINDOW_BACKGROUND        = (1 << (8)),
-    NK_WINDOW_SCALE_LEFT        = (1 << (9)),
-    NK_WINDOW_NO_INPUT          = (1 << (10))
+    NK_WINDOW_BORDER = (1 << (0)),
+    NK_WINDOW_MOVABLE = (1 << (1)),
+    NK_WINDOW_SCALABLE = (1 << (2)),
+    NK_WINDOW_CLOSABLE = (1 << (3)),
+    NK_WINDOW_MINIMIZABLE = (1 << (4)),
+    NK_WINDOW_NO_SCROLLBAR = (1 << (5)),
+    NK_WINDOW_TITLE = (1 << (6)),
+    NK_WINDOW_SCROLL_AUTO_HIDE = (1 << (7)),
+    NK_WINDOW_BACKGROUND = (1 << (8)),
+    NK_WINDOW_SCALE_LEFT = (1 << (9)),
+    NK_WINDOW_NO_INPUT = (1 << (10))
 };
-#line 1202
+# 1479 "nuklear/nuklear.h"
 extern int nk_begin(struct nk_context *ctx, const char *title, struct nk_rect bounds, nk_flags flags);
-#line 1212
+# 1499 "nuklear/nuklear.h"
 extern int nk_begin_titled(struct nk_context *ctx, const char *name, const char *title, struct nk_rect bounds, nk_flags flags);
-
-
-
-
+# 1512 "nuklear/nuklear.h"
 extern void nk_end(struct nk_context *ctx);
-
-
-
-
-
-
+# 1528 "nuklear/nuklear.h"
 extern struct nk_window *nk_window_find(struct nk_context *ctx, const char *name);
-
-
-
-
-
-
+# 1544 "nuklear/nuklear.h"
 extern struct nk_rect nk_window_get_bounds(const struct nk_context *ctx);
-
-
-
-
-
-
+# 1560 "nuklear/nuklear.h"
 extern struct nk_vec2 nk_window_get_position(const struct nk_context *ctx);
-
-
-
-
-
-
+# 1576 "nuklear/nuklear.h"
 extern struct nk_vec2 nk_window_get_size(const struct nk_context*);
-
-
-
-
-
-
+# 1592 "nuklear/nuklear.h"
 extern float nk_window_get_width(const struct nk_context*);
-
-
-
-
-
-
+# 1608 "nuklear/nuklear.h"
 extern float nk_window_get_height(const struct nk_context*);
-
-
-
-
-
-
+# 1626 "nuklear/nuklear.h"
 extern struct nk_panel* nk_window_get_panel(struct nk_context*);
-
-
-
-
-
-
+# 1645 "nuklear/nuklear.h"
 extern struct nk_rect nk_window_get_content_region(struct nk_context*);
-
-
-
-
-
-
+# 1664 "nuklear/nuklear.h"
 extern struct nk_vec2 nk_window_get_content_region_min(struct nk_context*);
-
-
-
-
-
-
+# 1683 "nuklear/nuklear.h"
 extern struct nk_vec2 nk_window_get_content_region_max(struct nk_context*);
-
-
-
-
-
-
+# 1701 "nuklear/nuklear.h"
 extern struct nk_vec2 nk_window_get_content_region_size(struct nk_context*);
-
-
-
-
-
-
+# 1720 "nuklear/nuklear.h"
 extern struct nk_command_buffer* nk_window_get_canvas(struct nk_context*);
-
-
-
-
-
-
+# 1735 "nuklear/nuklear.h"
 extern int nk_window_has_focus(const struct nk_context*);
-
-
-
-
-
-
-extern int nk_window_is_collapsed(struct nk_context *ctx, const char *name);
-
-
-
-
-
-
-extern int nk_window_is_closed(struct nk_context*, const char*);
-
-
-
-
-
-
-extern int nk_window_is_hidden(struct nk_context*, const char*);
-
-
-
-
-
-
-extern int nk_window_is_active(struct nk_context*, const char*);
-
-
-
-
-
-
+# 1750 "nuklear/nuklear.h"
 extern int nk_window_is_hovered(struct nk_context*);
-
-
-
-
-
+# 1765 "nuklear/nuklear.h"
+extern int nk_window_is_collapsed(struct nk_context *ctx, const char *name);
+# 1779 "nuklear/nuklear.h"
+extern int nk_window_is_closed(struct nk_context*, const char*);
+# 1793 "nuklear/nuklear.h"
+extern int nk_window_is_hidden(struct nk_context*, const char*);
+# 1807 "nuklear/nuklear.h"
+extern int nk_window_is_active(struct nk_context*, const char*);
+# 1820 "nuklear/nuklear.h"
 extern int nk_window_is_any_hovered(struct nk_context*);
-#line 1357
+# 1835 "nuklear/nuklear.h"
 extern int nk_item_is_any_active(struct nk_context*);
-
-
-
-
-
-
+# 1848 "nuklear/nuklear.h"
 extern void nk_window_set_bounds(struct nk_context*, const char *name, struct nk_rect bounds);
-
-
-
-
-
-
+# 1861 "nuklear/nuklear.h"
 extern void nk_window_set_position(struct nk_context*, const char *name, struct nk_vec2 pos);
-
-
-
-
-
-
+# 1874 "nuklear/nuklear.h"
 extern void nk_window_set_size(struct nk_context*, const char *name, struct nk_vec2);
-
-
-
-
+# 1886 "nuklear/nuklear.h"
 extern void nk_window_set_focus(struct nk_context*, const char *name);
-
-
-
-
+# 1898 "nuklear/nuklear.h"
 extern void nk_window_close(struct nk_context *ctx, const char *name);
-
-
-
-
+# 1911 "nuklear/nuklear.h"
 extern void nk_window_collapse(struct nk_context*, const char *name, enum nk_collapse_states state);
-
-
-
-
-
-
+# 1925 "nuklear/nuklear.h"
 extern void nk_window_collapse_if(struct nk_context*, const char *name, enum nk_collapse_states, int cond);
-
-
-
-
-
+# 1938 "nuklear/nuklear.h"
 extern void nk_window_show(struct nk_context*, const char *name, enum nk_show_states);
-
-
-
-
-
-
+# 1952 "nuklear/nuklear.h"
 extern void nk_window_show_if(struct nk_context*, const char *name, enum nk_show_states, int cond);
-#line 1677
+# 2241 "nuklear/nuklear.h"
 extern void nk_layout_set_min_row_height(struct nk_context*, float height);
-
-
-
-
+# 2252 "nuklear/nuklear.h"
 extern void nk_layout_reset_min_row_height(struct nk_context*);
-
-
-
+# 2265 "nuklear/nuklear.h"
 extern struct nk_rect nk_layout_widget_bounds(struct nk_context*);
-
-
-
-
+# 2279 "nuklear/nuklear.h"
 extern float nk_layout_ratio_from_pixel(struct nk_context*, float pixel_width);
-#line 1699
+# 2294 "nuklear/nuklear.h"
 extern void nk_layout_row_dynamic(struct nk_context *ctx, float height, int cols);
-#line 1708
+# 2310 "nuklear/nuklear.h"
 extern void nk_layout_row_static(struct nk_context *ctx, float height, int item_width, int cols);
-
-
-
-
-
-
+# 2324 "nuklear/nuklear.h"
 extern void nk_layout_row_begin(struct nk_context *ctx, enum nk_layout_format fmt, float row_height, int cols);
-
-
-
-
+# 2336 "nuklear/nuklear.h"
 extern void nk_layout_row_push(struct nk_context*, float value);
-
-
-
+# 2347 "nuklear/nuklear.h"
 extern void nk_layout_row_end(struct nk_context*);
-
-
-
-
-
-
+# 2361 "nuklear/nuklear.h"
 extern void nk_layout_row(struct nk_context*, enum nk_layout_format, float height, int cols, const float *ratio);
-
-
-
-
+# 2373 "nuklear/nuklear.h"
 extern void nk_layout_row_template_begin(struct nk_context*, float row_height);
-
-
-
+# 2385 "nuklear/nuklear.h"
 extern void nk_layout_row_template_push_dynamic(struct nk_context*);
-
-
-
-
+# 2397 "nuklear/nuklear.h"
 extern void nk_layout_row_template_push_variable(struct nk_context*, float min_width);
-
-
-
-
+# 2409 "nuklear/nuklear.h"
 extern void nk_layout_row_template_push_static(struct nk_context*, float width);
-
-
-
+# 2420 "nuklear/nuklear.h"
 extern void nk_layout_row_template_end(struct nk_context*);
-
-
-
-
-
-
+# 2434 "nuklear/nuklear.h"
 extern void nk_layout_space_begin(struct nk_context*, enum nk_layout_format, float height, int widget_count);
-
-
-
-
-extern void nk_layout_space_push(struct nk_context*, struct nk_rect);
-
-
-
+# 2446 "nuklear/nuklear.h"
+extern void nk_layout_space_push(struct nk_context*, struct nk_rect bounds);
+# 2457 "nuklear/nuklear.h"
 extern void nk_layout_space_end(struct nk_context*);
-
-
-
+# 2470 "nuklear/nuklear.h"
 extern struct nk_rect nk_layout_space_bounds(struct nk_context*);
-
-
-
-
+# 2484 "nuklear/nuklear.h"
 extern struct nk_vec2 nk_layout_space_to_screen(struct nk_context*, struct nk_vec2);
-
-
-
-
+# 2498 "nuklear/nuklear.h"
 extern struct nk_vec2 nk_layout_space_to_local(struct nk_context*, struct nk_vec2);
-
-
-
-
+# 2512 "nuklear/nuklear.h"
 extern struct nk_rect nk_layout_space_rect_to_screen(struct nk_context*, struct nk_rect);
-
-
-
-
+# 2526 "nuklear/nuklear.h"
 extern struct nk_rect nk_layout_space_rect_to_local(struct nk_context*, struct nk_rect);
-
-
-
-
-
+# 2627 "nuklear/nuklear.h"
 extern int nk_group_begin(struct nk_context*, const char *title, nk_flags);
-extern int nk_group_scrolled_offset_begin(struct nk_context*, nk_uint *x_offset, nk_uint *y_offset, const char*, nk_flags);
-extern int nk_group_scrolled_begin(struct nk_context*, struct nk_scroll*, const char *title, nk_flags);
-extern void nk_group_scrolled_end(struct nk_context*);
+# 2643 "nuklear/nuklear.h"
+extern int nk_group_begin_titled(struct nk_context*, const char *name, const char *title, nk_flags);
+# 2654 "nuklear/nuklear.h"
 extern void nk_group_end(struct nk_context*);
+# 2672 "nuklear/nuklear.h"
+extern int nk_group_scrolled_offset_begin(struct nk_context*, nk_uint *x_offset, nk_uint *y_offset, const char *title, nk_flags flags);
+# 2689 "nuklear/nuklear.h"
+extern int nk_group_scrolled_begin(struct nk_context*, struct nk_scroll *off, const char *title, nk_flags);
+# 2700 "nuklear/nuklear.h"
+extern void nk_group_scrolled_end(struct nk_context*);
+# 2829 "nuklear/nuklear.h"
+extern int nk_tree_push_hashed(struct nk_context*, enum nk_tree_type, const char *title, enum nk_collapse_states initial_state, const char *hash, int len,int seed);
+# 2893 "nuklear/nuklear.h"
+extern int nk_tree_image_push_hashed(struct nk_context*, enum nk_tree_type, struct nk_image, const char *title, enum nk_collapse_states initial_state, const char *hash, int len,int seed);
+# 2904 "nuklear/nuklear.h"
+extern void nk_tree_pop(struct nk_context*);
+# 2920 "nuklear/nuklear.h"
+extern int nk_tree_state_push(struct nk_context*, enum nk_tree_type, const char *title, enum nk_collapse_states *state);
+# 2937 "nuklear/nuklear.h"
+extern int nk_tree_state_image_push(struct nk_context*, enum nk_tree_type, struct nk_image, const char *title, enum nk_collapse_states *state);
+# 2948 "nuklear/nuklear.h"
+extern void nk_tree_state_pop(struct nk_context*);
+
+
+
+extern int nk_tree_element_push_hashed(struct nk_context*, enum nk_tree_type, const char *title, enum nk_collapse_states initial_state, int *selected, const char *hash, int len, int seed);
+extern int nk_tree_element_image_push_hashed(struct nk_context*, enum nk_tree_type, struct nk_image, const char *title, enum nk_collapse_states initial_state, int *selected, const char *hash, int len,int seed);
+extern void nk_tree_element_pop(struct nk_context*);
+
 
 
 
@@ -611,15 +388,6 @@ struct nk_list_view {
 };
 extern int nk_list_view_begin(struct nk_context*, struct nk_list_view *out, const char *id, nk_flags, int row_height, int row_count);
 extern void nk_list_view_end(struct nk_list_view*);
-#line 1828
-extern int nk_tree_push_hashed(struct nk_context*, enum nk_tree_type, const char *title, enum nk_collapse_states initial_state, const char *hash, int len,int seed);
-
-
-extern int nk_tree_image_push_hashed(struct nk_context*, enum nk_tree_type, struct nk_image, const char *title, enum nk_collapse_states initial_state, const char *hash, int len,int seed);
-extern void nk_tree_pop(struct nk_context*);
-extern int nk_tree_state_push(struct nk_context*, enum nk_tree_type, const char *title, enum nk_collapse_states *state);
-extern int nk_tree_state_image_push(struct nk_context*, enum nk_tree_type, struct nk_image, const char *title, enum nk_collapse_states *state);
-extern void nk_tree_state_pop(struct nk_context*);
 
 
 
@@ -631,14 +399,14 @@ enum nk_widget_layout_states {
     NK_WIDGET_ROM
 };
 enum nk_widget_states {
-    NK_WIDGET_STATE_MODIFIED    = (1 << (1)),
-    NK_WIDGET_STATE_INACTIVE    = (1 << (2)),
-    NK_WIDGET_STATE_ENTERED     = (1 << (3)),
-    NK_WIDGET_STATE_HOVER       = (1 << (4)),
-    NK_WIDGET_STATE_ACTIVED     = (1 << (5)),
-    NK_WIDGET_STATE_LEFT        = (1 << (6)),
-    NK_WIDGET_STATE_HOVERED     = NK_WIDGET_STATE_HOVER|NK_WIDGET_STATE_MODIFIED,
-    NK_WIDGET_STATE_ACTIVE      = NK_WIDGET_STATE_ACTIVED|NK_WIDGET_STATE_MODIFIED
+    NK_WIDGET_STATE_MODIFIED = (1 << (1)),
+    NK_WIDGET_STATE_INACTIVE = (1 << (2)),
+    NK_WIDGET_STATE_ENTERED = (1 << (3)),
+    NK_WIDGET_STATE_HOVER = (1 << (4)),
+    NK_WIDGET_STATE_ACTIVED = (1 << (5)),
+    NK_WIDGET_STATE_LEFT = (1 << (6)),
+    NK_WIDGET_STATE_HOVERED = NK_WIDGET_STATE_HOVER|NK_WIDGET_STATE_MODIFIED,
+    NK_WIDGET_STATE_ACTIVE = NK_WIDGET_STATE_ACTIVED|NK_WIDGET_STATE_MODIFIED
 };
 extern enum nk_widget_layout_states nk_widget(struct nk_rect*, const struct nk_context*);
 extern enum nk_widget_layout_states nk_widget_fitting(struct nk_rect*, struct nk_context*, struct nk_vec2);
@@ -657,17 +425,17 @@ extern void nk_spacing(struct nk_context*, int cols);
 
 
 enum nk_text_align {
-    NK_TEXT_ALIGN_LEFT        = 0x01,
-    NK_TEXT_ALIGN_CENTERED    = 0x02,
-    NK_TEXT_ALIGN_RIGHT       = 0x04,
-    NK_TEXT_ALIGN_TOP         = 0x08,
-    NK_TEXT_ALIGN_MIDDLE      = 0x10,
-    NK_TEXT_ALIGN_BOTTOM      = 0x20
+    NK_TEXT_ALIGN_LEFT = 0x01,
+    NK_TEXT_ALIGN_CENTERED = 0x02,
+    NK_TEXT_ALIGN_RIGHT = 0x04,
+    NK_TEXT_ALIGN_TOP = 0x08,
+    NK_TEXT_ALIGN_MIDDLE = 0x10,
+    NK_TEXT_ALIGN_BOTTOM = 0x20
 };
 enum nk_text_alignment {
-    NK_TEXT_LEFT        = NK_TEXT_ALIGN_MIDDLE|NK_TEXT_ALIGN_LEFT,
-    NK_TEXT_CENTERED    = NK_TEXT_ALIGN_MIDDLE|NK_TEXT_ALIGN_CENTERED,
-    NK_TEXT_RIGHT       = NK_TEXT_ALIGN_MIDDLE|NK_TEXT_ALIGN_RIGHT
+    NK_TEXT_LEFT = NK_TEXT_ALIGN_MIDDLE|NK_TEXT_ALIGN_LEFT,
+    NK_TEXT_CENTERED = NK_TEXT_ALIGN_MIDDLE|NK_TEXT_ALIGN_CENTERED,
+    NK_TEXT_RIGHT = NK_TEXT_ALIGN_MIDDLE|NK_TEXT_ALIGN_RIGHT
 };
 extern void nk_text(struct nk_context*, const char*, int, nk_flags);
 extern void nk_text_colored(struct nk_context*, const char*, int, nk_flags, struct nk_color);
@@ -678,24 +446,8 @@ extern void nk_label_colored(struct nk_context*, const char*, nk_flags align, st
 extern void nk_label_wrap(struct nk_context*, const char*);
 extern void nk_label_colored_wrap(struct nk_context*, const char*, struct nk_color);
 extern void nk_image(struct nk_context*, struct nk_image);
-
-extern void nk_labelf(struct nk_context*, nk_flags, const char*, ...);
-extern void nk_labelf_colored(struct nk_context*, nk_flags align, struct nk_color, const char*,...);
-extern void nk_labelf_wrap(struct nk_context*, const char*,...);
-extern void nk_labelf_colored_wrap(struct nk_context*, struct nk_color, const char*,...);
-extern void nk_value_bool(struct nk_context*, const char *prefix, int);
-extern void nk_value_int(struct nk_context*, const char *prefix, int);
-extern void nk_value_uint(struct nk_context*, const char *prefix, unsigned int);
-extern void nk_value_float(struct nk_context*, const char *prefix, float);
-extern void nk_value_color_byte(struct nk_context*, const char *prefix, struct nk_color);
-extern void nk_value_color_float(struct nk_context*, const char *prefix, struct nk_color);
-extern void nk_value_color_hex(struct nk_context*, const char *prefix, struct nk_color);
-
-
-
-
-
-
+extern void nk_image_color(struct nk_context*, struct nk_image, struct nk_color);
+# 3053 "nuklear/nuklear.h"
 extern int nk_button_text(struct nk_context*, const char *title, int len);
 extern int nk_button_label(struct nk_context*, const char *title);
 extern int nk_button_color(struct nk_context*, struct nk_color);
@@ -745,12 +497,18 @@ extern int nk_option_text(struct nk_context*, const char*, int, int active);
 
 extern int nk_selectable_label(struct nk_context*, const char*, nk_flags align, int *value);
 extern int nk_selectable_text(struct nk_context*, const char*, int, nk_flags align, int *value);
-extern int nk_selectable_image_label(struct nk_context*,struct nk_image,  const char*, nk_flags align, int *value);
+extern int nk_selectable_image_label(struct nk_context*,struct nk_image, const char*, nk_flags align, int *value);
 extern int nk_selectable_image_text(struct nk_context*,struct nk_image, const char*, int, nk_flags align, int *value);
+extern int nk_selectable_symbol_label(struct nk_context*,enum nk_symbol_type, const char*, nk_flags align, int *value);
+extern int nk_selectable_symbol_text(struct nk_context*,enum nk_symbol_type, const char*, int, nk_flags align, int *value);
+
 extern int nk_select_label(struct nk_context*, const char*, nk_flags align, int value);
 extern int nk_select_text(struct nk_context*, const char*, int, nk_flags align, int value);
 extern int nk_select_image_label(struct nk_context*, struct nk_image,const char*, nk_flags align, int value);
 extern int nk_select_image_text(struct nk_context*, struct nk_image,const char*, int, nk_flags align, int value);
+extern int nk_select_symbol_label(struct nk_context*,enum nk_symbol_type, const char*, nk_flags align, int value);
+extern int nk_select_symbol_text(struct nk_context*,enum nk_symbol_type, const char*, int, nk_flags align, int value);
+
 
 
 
@@ -773,18 +531,19 @@ extern nk_size nk_prog(struct nk_context*, nk_size cur, nk_size max, int modifya
 
 
 
-extern struct nk_color nk_color_picker(struct nk_context*, struct nk_color, enum nk_color_format);
-extern int nk_color_pick(struct nk_context*, struct nk_color*, enum nk_color_format);
-
-
-
-
-
+extern struct nk_colorf nk_color_picker(struct nk_context*, struct nk_colorf, enum nk_color_format);
+extern int nk_color_pick(struct nk_context*, struct nk_colorf*, enum nk_color_format);
+# 3234 "nuklear/nuklear.h"
 extern void nk_property_int(struct nk_context*, const char *name, int min, int *val, int max, int step, float inc_per_pixel);
+# 3255 "nuklear/nuklear.h"
 extern void nk_property_float(struct nk_context*, const char *name, float min, float *val, float max, float step, float inc_per_pixel);
+# 3276 "nuklear/nuklear.h"
 extern void nk_property_double(struct nk_context*, const char *name, double min, double *val, double max, double step, float inc_per_pixel);
+# 3299 "nuklear/nuklear.h"
 extern int nk_propertyi(struct nk_context*, const char *name, int min, int val, int max, int step, float inc_per_pixel);
+# 3322 "nuklear/nuklear.h"
 extern float nk_propertyf(struct nk_context*, const char *name, float min, float val, float max, float step, float inc_per_pixel);
+# 3345 "nuklear/nuklear.h"
 extern double nk_propertyd(struct nk_context*, const char *name, double min, double val, double max, double step, float inc_per_pixel);
 
 
@@ -792,32 +551,32 @@ extern double nk_propertyd(struct nk_context*, const char *name, double min, dou
 
 
 enum nk_edit_flags {
-    NK_EDIT_DEFAULT                 = 0,
-    NK_EDIT_READ_ONLY               = (1 << (0)),
-    NK_EDIT_AUTO_SELECT             = (1 << (1)),
-    NK_EDIT_SIG_ENTER               = (1 << (2)),
-    NK_EDIT_ALLOW_TAB               = (1 << (3)),
-    NK_EDIT_NO_CURSOR               = (1 << (4)),
-    NK_EDIT_SELECTABLE              = (1 << (5)),
-    NK_EDIT_CLIPBOARD               = (1 << (6)),
-    NK_EDIT_CTRL_ENTER_NEWLINE      = (1 << (7)),
-    NK_EDIT_NO_HORIZONTAL_SCROLL    = (1 << (8)),
-    NK_EDIT_ALWAYS_INSERT_MODE      = (1 << (9)),
-    NK_EDIT_MULTILINE               = (1 << (10)),
-    NK_EDIT_GOTO_END_ON_ACTIVATE    = (1 << (11))
+    NK_EDIT_DEFAULT = 0,
+    NK_EDIT_READ_ONLY = (1 << (0)),
+    NK_EDIT_AUTO_SELECT = (1 << (1)),
+    NK_EDIT_SIG_ENTER = (1 << (2)),
+    NK_EDIT_ALLOW_TAB = (1 << (3)),
+    NK_EDIT_NO_CURSOR = (1 << (4)),
+    NK_EDIT_SELECTABLE = (1 << (5)),
+    NK_EDIT_CLIPBOARD = (1 << (6)),
+    NK_EDIT_CTRL_ENTER_NEWLINE = (1 << (7)),
+    NK_EDIT_NO_HORIZONTAL_SCROLL = (1 << (8)),
+    NK_EDIT_ALWAYS_INSERT_MODE = (1 << (9)),
+    NK_EDIT_MULTILINE = (1 << (10)),
+    NK_EDIT_GOTO_END_ON_ACTIVATE = (1 << (11))
 };
 enum nk_edit_types {
-    NK_EDIT_SIMPLE  = NK_EDIT_ALWAYS_INSERT_MODE,
-    NK_EDIT_FIELD   = NK_EDIT_SIMPLE|NK_EDIT_SELECTABLE|NK_EDIT_CLIPBOARD,
-    NK_EDIT_BOX     = NK_EDIT_ALWAYS_INSERT_MODE| NK_EDIT_SELECTABLE| NK_EDIT_MULTILINE|NK_EDIT_ALLOW_TAB|NK_EDIT_CLIPBOARD,
-    NK_EDIT_EDITOR  = NK_EDIT_SELECTABLE|NK_EDIT_MULTILINE|NK_EDIT_ALLOW_TAB| NK_EDIT_CLIPBOARD
+    NK_EDIT_SIMPLE = NK_EDIT_ALWAYS_INSERT_MODE,
+    NK_EDIT_FIELD = NK_EDIT_SIMPLE|NK_EDIT_SELECTABLE|NK_EDIT_CLIPBOARD,
+    NK_EDIT_BOX = NK_EDIT_ALWAYS_INSERT_MODE| NK_EDIT_SELECTABLE| NK_EDIT_MULTILINE|NK_EDIT_ALLOW_TAB|NK_EDIT_CLIPBOARD,
+    NK_EDIT_EDITOR = NK_EDIT_SELECTABLE|NK_EDIT_MULTILINE|NK_EDIT_ALLOW_TAB| NK_EDIT_CLIPBOARD
 };
 enum nk_edit_events {
-    NK_EDIT_ACTIVE      = (1 << (0)),
-    NK_EDIT_INACTIVE    = (1 << (1)),
-    NK_EDIT_ACTIVATED   = (1 << (2)),
+    NK_EDIT_ACTIVE = (1 << (0)),
+    NK_EDIT_INACTIVE = (1 << (1)),
+    NK_EDIT_ACTIVATED = (1 << (2)),
     NK_EDIT_DEACTIVATED = (1 << (3)),
-    NK_EDIT_COMMITED    = (1 << (4))
+    NK_EDIT_COMMITED = (1 << (4))
 };
 extern nk_flags nk_edit_string(struct nk_context*, nk_flags, char *buffer, int *len, int max, nk_plugin_filter);
 extern nk_flags nk_edit_string_zero_terminated(struct nk_context*, nk_flags, char *buffer, int max, nk_plugin_filter);
@@ -867,12 +626,12 @@ extern void nk_combobox_callback(struct nk_context*, void(*item_getter)(void*, i
 extern int nk_combo_begin_text(struct nk_context*, const char *selected, int, struct nk_vec2 size);
 extern int nk_combo_begin_label(struct nk_context*, const char *selected, struct nk_vec2 size);
 extern int nk_combo_begin_color(struct nk_context*, struct nk_color color, struct nk_vec2 size);
-extern int nk_combo_begin_symbol(struct nk_context*,  enum nk_symbol_type,  struct nk_vec2 size);
+extern int nk_combo_begin_symbol(struct nk_context*, enum nk_symbol_type, struct nk_vec2 size);
 extern int nk_combo_begin_symbol_label(struct nk_context*, const char *selected, enum nk_symbol_type, struct nk_vec2 size);
 extern int nk_combo_begin_symbol_text(struct nk_context*, const char *selected, int, enum nk_symbol_type, struct nk_vec2 size);
-extern int nk_combo_begin_image(struct nk_context*, struct nk_image img,  struct nk_vec2 size);
+extern int nk_combo_begin_image(struct nk_context*, struct nk_image img, struct nk_vec2 size);
 extern int nk_combo_begin_image_label(struct nk_context*, const char *selected, struct nk_image, struct nk_vec2 size);
-extern int nk_combo_begin_image_text(struct nk_context*,  const char *selected, int, struct nk_image, struct nk_vec2 size);
+extern int nk_combo_begin_image_text(struct nk_context*, const char *selected, int, struct nk_image, struct nk_vec2 size);
 extern int nk_combo_item_label(struct nk_context*, const char*, nk_flags alignment);
 extern int nk_combo_item_text(struct nk_context*, const char*,int, nk_flags alignment);
 extern int nk_combo_item_image_label(struct nk_context*, struct nk_image, const char*, nk_flags alignment);
@@ -902,7 +661,8 @@ extern void nk_contextual_end(struct nk_context*);
 
 extern void nk_tooltip(struct nk_context*, const char*);
 
-extern void nk_tooltipf(struct nk_context*, const char*, ...);
+
+
 
 extern int nk_tooltip_begin(struct nk_context*, float width);
 extern void nk_tooltip_end(struct nk_context*);
@@ -1008,6 +768,7 @@ extern struct nk_color nk_rgb_iv(const int *rgb);
 extern struct nk_color nk_rgb_bv(const nk_byte* rgb);
 extern struct nk_color nk_rgb_f(float r, float g, float b);
 extern struct nk_color nk_rgb_fv(const float *rgb);
+extern struct nk_color nk_rgb_cf(struct nk_colorf c);
 extern struct nk_color nk_rgb_hex(const char *rgb);
 
 extern struct nk_color nk_rgba(int r, int g, int b, int a);
@@ -1016,7 +777,13 @@ extern struct nk_color nk_rgba_iv(const int *rgba);
 extern struct nk_color nk_rgba_bv(const nk_byte *rgba);
 extern struct nk_color nk_rgba_f(float r, float g, float b, float a);
 extern struct nk_color nk_rgba_fv(const float *rgba);
+extern struct nk_color nk_rgba_cf(struct nk_colorf c);
 extern struct nk_color nk_rgba_hex(const char *rgb);
+
+extern struct nk_colorf nk_hsva_colorf(float h, float s, float v, float a);
+extern struct nk_colorf nk_hsva_colorfv(float *c);
+extern void nk_colorf_hsva_f(float *out_h, float *out_s, float *out_v, float *out_a, struct nk_colorf in);
+extern void nk_colorf_hsva_fv(float *hsva, struct nk_colorf in);
 
 extern struct nk_color nk_hsv(int h, int s, int v);
 extern struct nk_color nk_hsv_iv(const int *hsv);
@@ -1033,6 +800,7 @@ extern struct nk_color nk_hsva_fv(const float *hsva);
 
 extern void nk_color_f(float *r, float *g, float *b, float *a, struct nk_color);
 extern void nk_color_fv(float *rgba_out, struct nk_color);
+extern struct nk_colorf nk_color_cf(struct nk_color);
 extern void nk_color_d(double *r, double *g, double *b, double *a, struct nk_color);
 extern void nk_color_dv(double *rgba_out, struct nk_color);
 
@@ -1111,7 +879,7 @@ extern int nk_utf_decode(const char*, nk_rune*, int);
 extern int nk_utf_encode(nk_rune, char*, int);
 extern int nk_utf_len(const char*, int byte_len);
 extern const char* nk_utf_at(const char *buffer, int length, int index, nk_rune *unicode, int *len);
-#line 2476
+# 3829 "nuklear/nuklear.h"
 struct nk_user_font_glyph;
 typedef float(*nk_text_width_f)(nk_handle, float h, const char*, int len);
 typedef void(*nk_query_font_glyph_f)(nk_handle handle, float font_height,
@@ -1145,135 +913,7 @@ struct nk_user_font {
 
 
 };
-
-
-enum nk_font_coord_type {
-    NK_COORD_UV,
-    NK_COORD_PIXEL
-};
-
-struct nk_font;
-struct nk_baked_font {
-    float height;
-
-    float ascent, descent;
-
-    nk_rune glyph_offset;
-
-    nk_rune glyph_count;
-
-    const nk_rune *ranges;
-
-};
-
-struct nk_font_config {
-    struct nk_font_config *next;
-
-    void *ttf_blob;
-
-
-    nk_size ttf_size;
-
-
-
-    unsigned char ttf_data_owned_by_atlas;
-
-    unsigned char merge_mode;
-
-    unsigned char pixel_snap;
-
-    unsigned char oversample_v, oversample_h;
-
-    unsigned char padding[3];
-
-    float size;
-
-    enum nk_font_coord_type coord_type;
-
-    struct nk_vec2 spacing;
-
-    const nk_rune *range;
-
-    struct nk_baked_font *font;
-
-    nk_rune fallback_glyph;
-
-    struct nk_font_config *n;
-    struct nk_font_config *p;
-};
-
-struct nk_font_glyph {
-    nk_rune codepoint;
-    float xadvance;
-    float x0, y0, x1, y1, w, h;
-    float u0, v0, u1, v1;
-};
-
-struct nk_font {
-    struct nk_font *next;
-    struct nk_user_font handle;
-    struct nk_baked_font info;
-    float scale;
-    struct nk_font_glyph *glyphs;
-    const struct nk_font_glyph *fallback;
-    nk_rune fallback_codepoint;
-    nk_handle texture;
-    struct nk_font_config *config;
-};
-
-enum nk_font_atlas_format {
-    NK_FONT_ATLAS_ALPHA8,
-    NK_FONT_ATLAS_RGBA32
-};
-
-struct nk_font_atlas {
-    void *pixel;
-    int tex_width;
-    int tex_height;
-
-    struct nk_allocator permanent;
-    struct nk_allocator temporary;
-
-    struct nk_recti custom;
-    struct nk_cursor cursors[NK_CURSOR_COUNT];
-
-    int glyph_count;
-    struct nk_font_glyph *glyphs;
-    struct nk_font *default_font;
-    struct nk_font *fonts;
-    struct nk_font_config *config;
-    int font_num;
-};
-
-
-extern const nk_rune *nk_font_default_glyph_ranges(void);
-extern const nk_rune *nk_font_chinese_glyph_ranges(void);
-extern const nk_rune *nk_font_cyrillic_glyph_ranges(void);
-extern const nk_rune *nk_font_korean_glyph_ranges(void);
-
-
-extern void nk_font_atlas_init_default(struct nk_font_atlas*);
-
-extern void nk_font_atlas_init(struct nk_font_atlas*, struct nk_allocator*);
-extern void nk_font_atlas_init_custom(struct nk_font_atlas*, struct nk_allocator *persistent, struct nk_allocator *transient);
-extern void nk_font_atlas_begin(struct nk_font_atlas*);
-extern struct nk_font_config nk_font_config(float pixel_height);
-extern struct nk_font *nk_font_atlas_add(struct nk_font_atlas*, const struct nk_font_config*);
-
-
-
-extern struct nk_font* nk_font_atlas_add_from_memory(struct nk_font_atlas *atlas, void *memory, nk_size size, float height, const struct nk_font_config *config);
-
-
-
-extern struct nk_font *nk_font_atlas_add_compressed(struct nk_font_atlas*, void *memory, nk_size size, float height, const struct nk_font_config*);
-extern struct nk_font* nk_font_atlas_add_compressed_base85(struct nk_font_atlas*, const char *data, float height, const struct nk_font_config *config);
-extern const void* nk_font_atlas_bake(struct nk_font_atlas*, int *width, int *height, enum nk_font_atlas_format);
-extern void nk_font_atlas_end(struct nk_font_atlas*, nk_handle tex, struct nk_draw_null_texture*);
-extern const struct nk_font_glyph* nk_font_find_glyph(struct nk_font*, nk_rune unicode);
-extern void nk_font_atlas_cleanup(struct nk_font_atlas *atlas);
-extern void nk_font_atlas_clear(struct nk_font_atlas*);
-#line 2673
+# 4026 "nuklear/nuklear.h"
 struct nk_memory_status {
     void *memory;
     unsigned int type;
@@ -1335,7 +975,7 @@ extern void nk_buffer_free(struct nk_buffer*);
 extern void *nk_buffer_memory(struct nk_buffer*);
 extern const void *nk_buffer_memory_const(const struct nk_buffer*);
 extern nk_size nk_buffer_total(struct nk_buffer*);
-#line 2745
+# 4098 "nuklear/nuklear.h"
 struct nk_str {
     struct nk_buffer buffer;
     int len;
@@ -1381,7 +1021,7 @@ extern char *nk_str_get(struct nk_str*);
 extern const char *nk_str_get_const(const struct nk_str*);
 extern int nk_str_len(struct nk_str*);
 extern int nk_str_len_char(struct nk_str*);
-#line 2827
+# 4180 "nuklear/nuklear.h"
 struct nk_text_edit;
 struct nk_clipboard {
     nk_handle userdata;
@@ -1460,7 +1100,7 @@ extern int nk_textedit_cut(struct nk_text_edit*);
 extern int nk_textedit_paste(struct nk_text_edit*, char const*, int len);
 extern void nk_textedit_undo(struct nk_text_edit*);
 extern void nk_textedit_redo(struct nk_text_edit*);
-#line 2955
+# 4308 "nuklear/nuklear.h"
 enum nk_command_type {
     NK_COMMAND_NOP,
     NK_COMMAND_SCISSOR,
@@ -1732,8 +1372,9 @@ extern int nk_input_is_mouse_released(const struct nk_input*, enum nk_buttons);
 extern int nk_input_is_key_pressed(const struct nk_input*, enum nk_keys);
 extern int nk_input_is_key_released(const struct nk_input*, enum nk_keys);
 extern int nk_input_is_key_down(const struct nk_input*, enum nk_keys);
-#line 3246
+# 4602 "nuklear/nuklear.h"
 typedef nk_ushort nk_draw_index;
+
 enum nk_draw_list_stroke {
     NK_STROKE_OPEN = nk_false,
 
@@ -1823,14 +1464,12 @@ struct nk_draw_list {
 
 extern void nk_draw_list_init(struct nk_draw_list*);
 extern void nk_draw_list_setup(struct nk_draw_list*, const struct nk_convert_config*, struct nk_buffer *cmds, struct nk_buffer *vertices, struct nk_buffer *elements, enum nk_anti_aliasing line_aa,enum nk_anti_aliasing shape_aa);
-extern void nk_draw_list_clear(struct nk_draw_list*);
 
 
 
 extern const struct nk_draw_command* nk__draw_list_begin(const struct nk_draw_list*, const struct nk_buffer*);
 extern const struct nk_draw_command* nk__draw_list_next(const struct nk_draw_command*, const struct nk_buffer*, const struct nk_draw_list*);
 extern const struct nk_draw_command* nk__draw_list_end(const struct nk_draw_list*, const struct nk_buffer*);
-extern void nk_draw_list_clear(struct nk_draw_list *list);
 
 
 extern void nk_draw_list_path_clear(struct nk_draw_list*);
@@ -1860,7 +1499,7 @@ extern void nk_draw_list_fill_poly_convex(struct nk_draw_list*, const struct nk_
 
 extern void nk_draw_list_add_image(struct nk_draw_list*, struct nk_image texture, struct nk_rect rect, struct nk_color);
 extern void nk_draw_list_add_text(struct nk_draw_list*, const struct nk_user_font*, struct nk_rect, const char *text, int len, float font_height, struct nk_color);
-#line 3384
+# 4739 "nuklear/nuklear.h"
 enum nk_style_item_type {
     NK_STYLE_ITEM_COLOR,
     NK_STYLE_ITEM_IMAGE
@@ -2297,15 +1936,16 @@ struct nk_style {
 extern struct nk_style_item nk_style_item_image(struct nk_image img);
 extern struct nk_style_item nk_style_item_color(struct nk_color);
 extern struct nk_style_item nk_style_item_hide(void);
-#line 3831
+# 5186 "nuklear/nuklear.h"
 enum nk_panel_type {
-    NK_PANEL_WINDOW     = (1 << (0)),
-    NK_PANEL_GROUP      = (1 << (1)),
-    NK_PANEL_POPUP      = (1 << (2)),
+    NK_PANEL_NONE = 0,
+    NK_PANEL_WINDOW = (1 << (0)),
+    NK_PANEL_GROUP = (1 << (1)),
+    NK_PANEL_POPUP = (1 << (2)),
     NK_PANEL_CONTEXTUAL = (1 << (4)),
-    NK_PANEL_COMBO      = (1 << (5)),
-    NK_PANEL_MENU       = (1 << (6)),
-    NK_PANEL_TOOLTIP    = (1 << (7))
+    NK_PANEL_COMBO = (1 << (5)),
+    NK_PANEL_MENU = (1 << (6)),
+    NK_PANEL_TOOLTIP = (1 << (7))
 };
 enum nk_panel_set {
     NK_PANEL_SET_NONBLOCK = NK_PANEL_CONTEXTUAL|NK_PANEL_COMBO|NK_PANEL_MENU|NK_PANEL_TOOLTIP,
@@ -2388,23 +2028,23 @@ struct nk_panel {
     struct nk_command_buffer *buffer;
     struct nk_panel *parent;
 };
-#line 3929
+# 5285 "nuklear/nuklear.h"
 struct nk_table;
 enum nk_window_flags {
-    NK_WINDOW_PRIVATE       = (1 << (11)),
-    NK_WINDOW_DYNAMIC       = NK_WINDOW_PRIVATE,
+    NK_WINDOW_PRIVATE = (1 << (11)),
+    NK_WINDOW_DYNAMIC = NK_WINDOW_PRIVATE,
 
-    NK_WINDOW_ROM           = (1 << (12)),
+    NK_WINDOW_ROM = (1 << (12)),
 
     NK_WINDOW_NOT_INTERACTIVE = NK_WINDOW_ROM|NK_WINDOW_NO_INPUT,
 
-    NK_WINDOW_HIDDEN        = (1 << (13)),
+    NK_WINDOW_HIDDEN = (1 << (13)),
 
-    NK_WINDOW_CLOSED        = (1 << (14)),
+    NK_WINDOW_CLOSED = (1 << (14)),
 
-    NK_WINDOW_MINIMIZED     = (1 << (15)),
+    NK_WINDOW_MINIMIZED = (1 << (15)),
 
-    NK_WINDOW_REMOVE_ROM    = (1 << (16))
+    NK_WINDOW_REMOVE_ROM = (1 << (16))
 
 };
 
@@ -2472,22 +2112,22 @@ struct nk_window {
     struct nk_window *prev;
     struct nk_window *parent;
 };
-#line 4078
-struct nk_config_stack_style_item_element {        struct nk_style_item *address;        struct nk_style_item old_value;    };
-struct nk_config_stack_float_element {        float *address;        float old_value;    };
-struct nk_config_stack_vec2_element {        struct nk_vec2 *address;        struct nk_vec2 old_value;    };
-struct nk_config_stack_flags_element {        nk_flags *address;        nk_flags old_value;    };
-struct nk_config_stack_color_element {        struct nk_color *address;        struct nk_color old_value;    };
-struct nk_config_stack_user_font_element {        const struct nk_user_font* *address;        const struct nk_user_font* old_value;    };
-struct nk_config_stack_button_behavior_element {        enum nk_button_behavior *address;        enum nk_button_behavior old_value;    };
+# 5434 "nuklear/nuklear.h"
+struct nk_config_stack_style_item_element { struct nk_style_item *address; struct nk_style_item old_value; };
+struct nk_config_stack_float_element { float *address; float old_value; };
+struct nk_config_stack_vec2_element { struct nk_vec2 *address; struct nk_vec2 old_value; };
+struct nk_config_stack_flags_element { nk_flags *address; nk_flags old_value; };
+struct nk_config_stack_color_element { struct nk_color *address; struct nk_color old_value; };
+struct nk_config_stack_user_font_element { const struct nk_user_font* *address; const struct nk_user_font* old_value; };
+struct nk_config_stack_button_behavior_element { enum nk_button_behavior *address; enum nk_button_behavior old_value; };
 
-struct nk_config_stack_style_item {        int head;        struct nk_config_stack_style_item_element elements[16];    };
-struct nk_config_stack_float {        int head;        struct nk_config_stack_float_element elements[32];    };
-struct nk_config_stack_vec2 {        int head;        struct nk_config_stack_vec2_element elements[16];    };
-struct nk_config_stack_flags {        int head;        struct nk_config_stack_flags_element elements[32];    };
-struct nk_config_stack_color {        int head;        struct nk_config_stack_color_element elements[32];    };
-struct nk_config_stack_user_font {        int head;        struct nk_config_stack_user_font_element elements[8];    };
-struct nk_config_stack_button_behavior {        int head;        struct nk_config_stack_button_behavior_element elements[8];    };
+struct nk_config_stack_style_item { int head; struct nk_config_stack_style_item_element elements[16]; };
+struct nk_config_stack_float { int head; struct nk_config_stack_float_element elements[32]; };
+struct nk_config_stack_vec2 { int head; struct nk_config_stack_vec2_element elements[16]; };
+struct nk_config_stack_flags { int head; struct nk_config_stack_flags_element elements[32]; };
+struct nk_config_stack_color { int head; struct nk_config_stack_color_element elements[32]; };
+struct nk_config_stack_user_font { int head; struct nk_config_stack_user_font_element elements[8]; };
+struct nk_config_stack_button_behavior { int head; struct nk_config_stack_button_behavior_element elements[8]; };
 
 struct nk_configuration_stacks {
     struct nk_config_stack_style_item style_items;
@@ -2498,7 +2138,13 @@ struct nk_configuration_stacks {
     struct nk_config_stack_user_font fonts;
     struct nk_config_stack_button_behavior button_behaviors;
 };
-#line 4110
+
+
+
+
+
+
+
 struct nk_table {
     unsigned int seq;
     unsigned int size;
@@ -2552,7 +2198,7 @@ struct nk_context {
 
 
     struct nk_draw_list draw_list;
-#line 4171
+# 5527 "nuklear/nuklear.h"
     struct nk_text_edit text_edit;
 
     struct nk_command_buffer overlay;
