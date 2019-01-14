@@ -23,15 +23,14 @@ def run_c_preprocessor(header_contents):
     cpp = Preprocessor()
     if platform.system() == "Windows":
         cpp.define("_MSC_VER")
-		
-		# NOTE: the cffi 'cdef' parser doesn't appear to understand
-		# the windows '__int32'.  So give it a definition.
-		#   - Not entirely sure what the ramifications of this are,
-		#     but it now compiles and runs on Windows...
-		#   - A better solution here would probably be to define 
-		#     NK_INT32 ourselves as int32_t.
-        cpp.define ("__int32 int")
-		
+
+        # NOTE: the cffi 'cdef' parser doesn't appear to understand
+        # the windows '__int32'.  So give it a definition.
+        #   - Not entirely sure what the ramifications of this are,
+        #     but it now compiles and runs on Windows...
+        #   - A better solution here would probably be to define NK_INT32 ourselves as int32_t.
+        cpp.define("__int32 int")
+
         if platform.architecture()[0] == "64bit":
             cpp.define("_WIN64")
         else:
@@ -59,6 +58,7 @@ def build_nuklear_defs(preprocessed_text, extra_cdef):
 
     print("Evaluating << expressions...")
     shift_expr = "\\(1 << \\(([0-9]+)\\)\\)"
+
     def evaluate_shift(match):
         return str(1 << int(match.group(1)))
     preprocessed_text = re.sub(shift_expr, evaluate_shift, preprocessed_text)
@@ -66,9 +66,11 @@ def build_nuklear_defs(preprocessed_text, extra_cdef):
     print("Evaluating | expressions...")
     val_expr = "(nk|NK)_[a-zA-Z0-9_]+"
     or_expr = "%s( *\\| *%s)+" % (val_expr, val_expr)
+
     def lookup_value(value_name):
         ret = 0
-        assignment = re.search("%s *= *([^\n,]*)" % value_name, preprocessed_text)
+        assignment = re.search("%s *= *([^\n,]*)" %
+                               value_name, preprocessed_text)
         if assignment:
             value = assignment.group(1)
             if re.match(or_expr, value) or re.match(val_expr, value):
@@ -76,22 +78,25 @@ def build_nuklear_defs(preprocessed_text, extra_cdef):
             else:
                 ret = int(value, 0)
         else:
-            raise Exception("Cannot find definition for value '%s'" % value_name)
+            raise Exception(
+                "Cannot find definition for value '%s'" % value_name)
         return ret
+
     def evaluate_or(expression_text):
         values = [lookup_value(x.strip()) for x in expression_text.split("|")]
-        return reduce(lambda x,y: x|y, values)
+        return reduce(lambda x, y: x | y, values)
+
     def replace_or(match):
         return str(evaluate_or(match.group(0)))
     preprocessed_text = re.sub(or_expr, replace_or, preprocessed_text)
 
     print("Stubbing nk_table...")
     preprocessed_text = re.sub(
-    	"(struct nk_table {.*?;)[^;]*?sizeof\\(.*?};",
+        "(struct nk_table {.*?;)[^;]*?sizeof\\(.*?};",
         lambda x: x.group(1) + "\n    ...;\n};",
         preprocessed_text,
         count=0,
-        flags=re.MULTILINE|re.DOTALL
+        flags=re.MULTILINE | re.DOTALL
     )
 
     print("Removing duplicate 'nk_draw_list_clear' declaration...")
@@ -119,7 +124,7 @@ def maker():
     #define NK_INCLUDE_FONT_BAKING
     #define NK_INCLUDE_STANDARD_VARARGS
     """
-    header = opts + open(nuklear_header_filename, 'rU').read()
+    header = opts + open(nuklear_header_filename, 'r').read()
     source = """
     #define NK_IMPLEMENTATION
     """ + header
@@ -132,7 +137,7 @@ def maker():
                                             nk_rune codepoint, nk_rune next_codepoint);
     }
     """
-    overview_source = open(nuklear_overview_filename, 'rU').read()
+    overview_source = open(nuklear_overview_filename, 'r').read()
     source += """
     #define UNUSED(a) (void)a
     #define MIN(a,b) ((a) < (b) ? (a) : (b))
@@ -145,24 +150,26 @@ def maker():
         overview(ctx);
     }
     """
-    
+
     # Define some options to prune the header.
     header_only_options = """
     #define NK_STATIC_ASSERT(X) 
 
     """
-    
-    # Can avoid the need to preprocess the header by caching it.  It 
+
+    # Can avoid the need to preprocess the header by caching it.  It
     # can be a bit tricky to get pcpp working.
     preprocessed_text = None
     if os.path.exists(cached_preprocessed_header_filename):
-        print() 
+        print()
         print("***************************************************************")
-        print("NOTE: Using cached preprocessed header from", cached_preprocessed_header_filename)
+        print("NOTE: Using cached preprocessed header from",
+              cached_preprocessed_header_filename)
         print("      Any changes to the header will not have been propagated.")
         print("***************************************************************")
-        print() 
-        preprocessed_text = open(cached_preprocessed_header_filename, 'rU').read()
+        print()
+        preprocessed_text = open(
+            cached_preprocessed_header_filename, 'rU').read()
     else:
         print("Preprocessing header...")
         preprocessed_text = run_c_preprocessor(header_only_options + header)
