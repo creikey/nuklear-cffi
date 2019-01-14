@@ -254,6 +254,11 @@ class NkPygame(object):
             elif e.button == 3:
                 button = lib.NK_BUTTON_RIGHT
             lib.nk_input_button(self.ctx, button, e.pos[0], e.pos[1], down)
+            # calculate scrolling vector
+            scroll_vect = lib.nk_vec2(0,0);
+            scroll_vect.x = (e.button == 7)*-1 + (e.button == 6)
+            scroll_vect.y = (e.button == 4) + (e.button == 5)*-1
+            lib.nk_input_scroll(self.ctx, scroll_vect)
         elif e.type == pygame.MOUSEMOTION:
             lib.nk_input_motion(self.ctx, e.pos[0], e.pos[1])
 
