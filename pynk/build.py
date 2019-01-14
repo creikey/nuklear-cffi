@@ -171,9 +171,11 @@ def maker():
         preprocessed_text = open(
             cached_preprocessed_header_filename, 'rU').read()
     else:
-        print("Preprocessing header...")
-        preprocessed_text = run_c_preprocessor(header_only_options + header)
-        open(cached_preprocessed_header_filename, 'w').write(preprocessed_text)
+        print("Ensure that you have gcc and sed installed, then run make to generate header")
+        raise NotImplemented
+        #print("Preprocessing header...")
+        #preprocessed_text = run_c_preprocessor(header_only_options + header)
+        #open(cached_preprocessed_header_filename, 'w').write(preprocessed_text)
 
     # Extract the 'cdef' text from the header file.
     defs = build_nuklear_defs(preprocessed_text, extra_cdef)
